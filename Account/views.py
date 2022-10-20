@@ -23,10 +23,10 @@ def UserLogin(request):
                     login(request, user)
                     return redirect("Dashboard:home")
                 else:
-                    return HttpResponse(
-                        'You should Signup First or Account is disabled!')
+                    return render(request,'Account/login.html',{'form':LoginForm(),"error":
+                        'You should Signup First or Account is disabled!'})
             else:
-                return HttpResponse('Invalid Login!')
+                return render(request,"Account/login.html",{"form":LoginForm(),"error":'Invalid Login!'})
     else:
         form = LoginForm()
     return render(request, 'Account/login.html', {'form': form})
